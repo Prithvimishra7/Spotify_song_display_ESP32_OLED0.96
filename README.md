@@ -5,11 +5,12 @@ items needed - breadboard , jumper wires , esp32 , usb c type cable , oled 0.96 
 Hardware part - 
 
 1 CONNECT THE OLED 0.96 AND ESP32 AS GIVEN IN THE TABLE
-OLED	ESP32
-GND	GND
-VDD	3V3
-SCK	G22 
-SDA	G21
+
+OLED	 = ESP32
+GND = 	 GND
+VDD	 =   3V3
+SCK	 =   G22 
+SDA	 =   G21
 
 
 SOFTWARE - 
