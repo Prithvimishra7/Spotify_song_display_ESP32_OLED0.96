@@ -1,0 +1,16 @@
+import requests
+from urllib.parse import urlparse, parse_qs
+
+CLIENT_ID = "your client id"
+CLIENT_SECRET = "your client secret"
+FULL_URL = "paste the whole address bar link here"
+
+code = parse_qs(urlparse(FULL_URL.strip()).query)["code"][0]
+
+r = requests.post("https://accounts.spotify.com/api/token",
+    data={"grant_type": "authorization_code", "code": code,
+          "redirect_uri": "http://127.0.0.1:8888/callback"},
+    auth=(CLIENT_ID.strip(), CLIENT_SECRET.strip()))
+print(r.status_code)
+print("REFRESH TOKEN:", r.json().get("refresh_token"))
+print(r.text)
