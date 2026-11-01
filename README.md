@@ -1,41 +1,111 @@
-# Spotify_song_display_ESP32_OLED0.96
-Spotify song display on 0.96 inch oled screen using esp 32
+# 🎵 Spotify Song Display Using ESP32 + 0.96-inch OLED Display
 
-items needed - breadboard , jumper wires , esp32 , usb c type cable , oled 0.96 inch , Spotify premium account
-Hardware part - 
+Hi everyone!
 
-1 CONNECT THE OLED 0.96 AND ESP32 AS GIVEN IN THE TABLE
+I recently worked on a small ESP32 project that displays the currently playing Spotify song on a **0.96-inch OLED display**.
 
-OLED	 = ESP32
-GND = 	 GND
-VDD	 =   3V3
-SCK	 =   G22 
-SDA	 =   G21
+The project uses the Spotify Web API to retrieve the currently playing track and displays the song information on the OLED screen through an ESP32 connected to Wi-Fi.
 
+## 🛠️ Components Required
 
-SOFTWARE - 
+1. ESP32 development board
+2. 0.96-inch OLED display (I2C)
+3. Breadboard
+4. Jumper wires
+5. USB Type-C cable (depending on your ESP32 board)
+6. Spotify Premium account
 
-STEP 1)
-i - logged in to your spotify premimum account
-ii - go to developer.spotify.com/dashboard
-iii - create app
-iv - Redirect URI: http://127.0.0.1:8888/callback, and tick Web API
-v- Copy the Client ID and Client Secret
+## 🔌 Hardware Connections
 
-STEP 2)
-i - Paste this link into Notepad, replace YOUR_CLIENT_ID with yours, then open it in your browser:
-https://accounts.spotify.com/authorize?client_id=YOUR_CLIENT_ID&response_type=code&redirect_uri=http://127.0.0.1:8888/callback&scope=user-read-currently-playing%20user-read-playback-state
-ii - Click Agree. The page will show an error like “This site can’t be reached.” That is  normal.
-In the address bar, copy everything after code=. That is  your code. It expires in a few minutes ( so do very quickly now).
+Connect the OLED display to the ESP32 according to the following table:
 
-STEP 3)
-i- open googles collab then new notebook and then run the code given  in file as "Collab_run_code" to get the refresh token of your premium account.
-ii - when u get the refresh token copy and save it . ( if it dont comes means u did it slow so do it fast untill u get refresh token )
-iii - Open Arduino software and run the code in file "Main_code_spotify" and replace these things with your information 
-const char* WIFI_SSID     = "your wifi name";
-const char* WIFI_PASSWORD = "your wifi password";
-const char* CLIENT_ID     = "...";
-const char* CLIENT_SECRET = "...";
-const char* REFRESH_TOKEN = "...";
-iv run the code and the oled screen will work and run any song through the same account.
-V done
+| OLED Display | ESP32 |
+|---|---|
+| GND | GND |
+| VDD | 3V3 |
+| SCK / SCL | GPIO 22 |
+| SDA | GPIO 21 |
+
+**Hardware setup:** Connect the components using jumper wires and ensure the OLED is powered correctly.
+
+## 💻 Software Setup
+
+### Step 1: Create a Spotify Developer App
+
+1. Log in to your Spotify Premium account.
+2. Visit https://developer.spotify.com/dashboard
+3. Create a new application.
+4. Add the following Redirect URI:
+
+   `http://127.0.0.1:8888/callback`
+
+5. Enable the Web API.
+6. Copy your Client ID and Client Secret and keep them private.
+
+### Step 2: Authorize Your Spotify Account
+
+1. Open Notepad.
+2. Paste the following URL and replace `YOUR_CLIENT_ID` with your Spotify application's Client ID:
+
+   `https://accounts.spotify.com/authorize?client_id=YOUR_CLIENT_ID&response_type=code&redirect_uri=http://127.0.0.1:8888/callback&scope=user-read-currently-playing%20user-read-playback-state`
+
+3. Open the URL in your browser.
+4. Log in and click Agree to authorize the application.
+5. After authorization, the browser may show a connection error because no local callback server is running. This is expected in this manual procedure.
+6. Copy the authorization code from the redirected URL and use it promptly, as authorization codes expire.
+
+### Step 3: Generate the Refresh Token
+
+1. Open Google Colab: https://colab.research.google.com/
+2. Create a new notebook.
+3. Open the provided `Collab_run_code` file.
+4. Copy its code into the notebook and run it.
+5. Follow the instructions to exchange your authorization code for a refresh token.
+6. Copy and securely save the refresh token.
+
+### Step 4: Upload the ESP32 Code
+
+1. Open Arduino IDE.
+2. Open the provided `Main_code_spotify` file.
+3. Update the configuration with your own credentials:
+
+   ```cpp
+   const char* WIFI_SSID     = "your_wifi_name";
+   const char* WIFI_PASSWORD = "your_wifi_password";
+
+   const char* CLIENT_ID     = "your_client_id";
+   const char* CLIENT_SECRET = "your_client_secret";
+   const char* REFRESH_TOKEN = "your_refresh_token";
+   ```
+
+4. Select your ESP32 board and the correct COM port.
+5. Compile and upload the program to your ESP32.
+
+**Important:** Never upload your Wi-Fi password, Client Secret or Refresh Token to a public GitHub repository or share them in screenshots. Keep credentials in a private configuration file.
+
+## 🎉 Final Result
+
+Once everything is configured:
+
+1. The ESP32 connects to Wi-Fi.
+2. It communicates with the Spotify Web API.
+3. It retrieves the currently playing track information.
+4. The OLED displays the song information.
+5. Play music using the same authorized Spotify account.
+
+And that's it! Your Spotify Song Display using ESP32 and a 0.96-inch OLED is ready.
+
+## 📂 Project Files
+
+- `Collab_run_code` – Used to obtain the Spotify refresh token.
+- `Main_code_spotify` – Main ESP32 Arduino code.
+
+## 🚀 Conclusion
+
+This project helped me explore ESP32, OLED displays, I2C communication, Wi-Fi connectivity and API integration.
+
+It was a fun way to combine embedded systems with music and software development!
+
+Feel free to share your suggestions or improvements.
+
+#ESP32 #Arduino #Spotify #OLED #EmbeddedSystems #IoT #DIYProjects #Electronics
